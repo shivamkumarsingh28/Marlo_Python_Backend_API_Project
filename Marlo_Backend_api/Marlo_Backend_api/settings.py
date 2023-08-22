@@ -25,10 +25,8 @@ SECRET_KEY = "django-insecure-n@35#+p68znsm#0$=1*(ru&j%5(i0(vr_b3(v%hbo40bp=g=p)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://super-duper-broccoli-x7pq4vjgjvj2p6p-8000.app.github.dev/','localhost']
-CSRF_TRUSTED_ORIGINS = ['https://super-duper-broccoli-x7pq4vjgjvj2p6p-8000.app.github.dev']
-CSRF_ALLOWED_ORIGINS = ['https://super-duper-broccoli-x7pq4vjgjvj2p6p-8000.app.github.dev']
-CORS_ORIGINS_WHITELIST = ['https://super-duper-broccoli-x7pq4vjgjvj2p6p-8000.app.github.dev']
+ALLOWED_HOSTS = ['https://super-duper-broccoli-x7pq4vjgjvj2p6p-8000.app.github.dev/','127.0.0.1']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -57,15 +55,15 @@ ROOT_URLCONF = "Marlo_Backend_api.urls"
 
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -133,5 +131,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE': 2
     #other settings...
 }
+
+
+
