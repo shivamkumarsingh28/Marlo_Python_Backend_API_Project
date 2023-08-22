@@ -3,11 +3,32 @@ from rest_framework import status
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializers import MarloUserSerializer
+from .serializers import MarloUserSerializer, MarloProductListSerializer
 from rest_framework.authtoken.models import Token
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate
-from .models import MarloUser
+from .models import MarloUser, MarloProduct
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.pagination import LimitOffsetPagination
+
+@api_view(['GET'])
+def ApiOverview(request):
+    api_urls = {
+        'all_product': '/product',
+        'Limit_Product': '/product/?limit=4',
+        'Csv file upload from admin panel through only superuser can do it': '/admin',
+        'login': '/login',
+        'register': '/register',
+    }
+ 
+    return Response(api_urls)
+
+class MarloProductListView(ListAPIView):
+  queryset = MarloProduct.objects.all()
+  serializer_class = MarloProductListSerializer
+  pagination_class = LimitOffsetPagination
+
 
 
 # Create your views here.
