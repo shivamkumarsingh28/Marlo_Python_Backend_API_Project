@@ -1,5 +1,13 @@
 from rest_framework import serializers
-from .models import MarloUser
+from .models import MarloUser, MarloProduct
+
+class MarloProductListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MarloProduct
+        fields = '__all__'
+
+
 
 class MarloUserSerializer(serializers.ModelSerializer):
     class Meta:
